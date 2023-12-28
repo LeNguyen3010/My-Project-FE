@@ -1,0 +1,66 @@
+<div class="content">
+  <section class="signup">
+      <div class="container">
+          <div class="signin-left">
+              <div class="sign-title">
+                  <h1>Tạo tài khoản</h1>
+              </div>
+          </div>
+          <div class="signin-right ">
+              <form (ngSubmit)="userRegister()" [formGroup]="registerForm" novalidate #localForm="ngForm">
+                <div class="email form-control1">
+                  <input type="email"  id="email" name="email" placeholder="Email" formControlName="email">
+                  <div *ngIf="localForm.submitted && !email.valid" class="validate-register">
+                    Bạn xem lại email của bạn
+                </div>
+              </div>
+
+              <div class="password form-control1">
+                  <input type="password"  id="password" name="password"
+                   placeholder="Password" formControlName="password">
+                  <div  *ngIf="localForm.submitted && !password.valid" class="validate-register">
+                     Bạn không được bỏ trống</div>
+              </div>
+              <div class="password form-control1">
+                <input type="password"  id="cpassword" name="cpassword"
+                 placeholder="Nhập lại Password" formControlName="cpassword">
+                <div  *ngIf="localForm.submitted && !cpassword.valid" class="validate-register">
+                  Bạn không được bỏ trống</div>
+            </div>
+                  <div class="lastname form-control1 ">
+                      <input type="text" id="lastname" name="lastname" placeholder="Họ" formControlName="lastname" >
+                      <div *ngIf="localForm.submitted && !lastname.valid" class="validate-register"> Bạn không được bỏ trống</div>
+                  </div>
+                  <div class="firstname form-control1">
+                      <input type="text" id="firstname" name="firstname" placeholder="Tên" formControlName="firstname">
+                      <div *ngIf="localForm.submitted && !firstname.valid" class="validate-register">Bạn không được bỏ trống</div>
+                  </div>
+
+                  <div class="birthday form-control1">
+                      <input type="datetime" id="birthday" name="birthday" placeholder="yyyy-mm-dd" formControlName="birthday" pattern="\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])*">
+                      <div *ngIf="localForm.submitted && !birthday.valid" class="validate-register">
+                        <div [hidden]="birthday.errors?.required" class="validate-register">
+                          Sai định dạng ngày tháng (yyyy-mm-dd)
+                      </div>
+                        <div [hidden]="localForm.submitted && birthday.errors?.pattern" class="validate-register">
+                          Không được bỏ trống
+                      </div>
+
+                    </div>
+
+                  </div>
+                  <div *ngIf="localForm.submitted && !(password.value === cpassword.value)" class="validate-register">Mật khẩu không trùng nhau</div>
+
+                  <div class="recaptcha form-control1">This site is protected by reCAPTCHA and the Google <a href="">Privacy Policy</a> and <a href="">Terms of Service</a> apply.</div>
+                  <div class="submit">
+                    <input class="btn" type="submit" id="dangki" value="Đăng kí">
+                  </div>
+
+                  <br>
+                  <div class="backto">
+                    <a routerLink=""><i class="bi bi-arrow-left"></i> Quay lại trang chủ</a>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </section>

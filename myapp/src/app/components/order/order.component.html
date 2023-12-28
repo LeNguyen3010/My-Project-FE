@@ -1,0 +1,62 @@
+<div class="container container-order">
+  <div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+      <div class="col-md-12 col-lg-12">
+        <div class="ibox">
+          <div class="ibox-title">
+            <h5>Đơn hàng của bạn</h5>
+          </div>
+          <hr>
+          <div class="ibox-content">
+            <div class="table-responsive">
+              <table class="table shoping-cart-table">
+                <tbody>
+                  <div *ngFor="let order of orders">
+                  <table class="table orderdetail-table">
+                    <tr>
+                      <th>Mã ĐH</th>
+                      <th>Ngày đặt hàng</th>
+                      <th>Số điện thoại</th>
+                      <th>Địa chỉ</th>
+                      <th>Trạng thái</th>
+                    </tr>
+                    <tr>
+                      <td scope="col" class="id"> {{order.id}}</td>
+                      <td scope="col" class="date"> {{order.createDate}}</td>
+                      <td scope="col" class="phonenumber"> {{order.phoneNumber}}</td>
+                      <td scope="col" class="address"> {{order.address}}</td>
+                      <td scope="col" class="status"> <span class="order-status"
+                       >{{order.status?"Đã xác nhận":"Chờ xác nhận"}}</span></td>
+                    </tr>
+                </table>
+                  <details>
+
+                    <summary (click)="getOrderDetailByOrderId(order.id)">
+                      Xem chi tiết
+                    </summary>
+                    <div *ngFor="let orderDetail of orderDetails">
+                      <table class="table">
+                        <tbody>
+                          <tr>
+                            <td rowspan="2"><img class="orderdetail-img" src="./assets/images/shoes/{{orderDetail.image}}"></td>
+                            <td>Shop: Runner Shop</td>
+                            <td>Mô tả : Hiện đại và thời trang khi diện item mới. Màu sắc lạ mắt, chất liệu thoáng mát, nhẹ nhàng, phù hợp với người<td>
+                          </tr>
+                          <tr>
+                            <td>Số lượng: {{orderDetail.quantity}}</td>
+                            <td>Giá: {{orderDetail.price}}/1 sản phẩm</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </details>
+                </div>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

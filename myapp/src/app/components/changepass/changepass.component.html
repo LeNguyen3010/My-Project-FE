@@ -1,0 +1,28 @@
+<div class="content">
+  <section class="signin ">
+      <div class="container">
+          <div class="signin-left">
+              <div class="sign-title">
+                  <h1>Đổi mật khẩu</h1>
+              </div>
+          </div>
+          <div class="signin-right " id="a-sign">
+              <form>
+                  <div class="username form-control1 ">
+                      <input type="password"   name="password"  id="password" placeholder="Nhập mật khẩu" [(ngModel)]="password">
+                  </div>
+                  <div class="password form-control1">
+                      <input type="password"  name="confirmpassword" id="confirmpassword" placeholder="Nhập lại Mật khẩu" [(ngModel)]="confirmpassword">
+                  </div>
+                  <div class="recaptcha form-control1">This site is protected by reCAPTCHA and the Google <a href="">Privacy Policy</a> and <a href="">Terms of Service</a> apply.</div>
+                  <div class="submit">
+                    <input class="btn" type="submit" id="changepass" (click)="changePass()" value="Đổi mật khẩu">
+                  <br>
+                  </div>
+                  <br>
+              </form>
+          </div>
+      </div>
+  </section>
+</div>
+

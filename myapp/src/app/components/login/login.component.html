@@ -1,0 +1,57 @@
+<div class="content">
+  <section class="signin ">
+      <div class="container">
+          <div class="signin-left">
+              <div class="sign-title">
+                  <h1>Đăng nhập</h1>
+              </div>
+          </div>
+          <div class="signin-right " id="a-sign">
+              <form [formGroup]="loginForm" (ngSubmit)="login()" #localForm="ngForm">
+                  <div class="username form-control1 ">
+                      <input type="email" ngModel  name="email"  id="email" placeholder="Email" required formControlName="email">
+                      <div *ngIf="localForm.submitted && !email.valid" class="validate-register">
+                        Bạn xem lại email của bạn
+                    </div>
+                  </div>
+                  <div class="password form-control1">
+                      <input type="password" ngModel name="password" id="password" placeholder="Mật khẩu"  formControlName="password">
+                      <div class="error" style="position: absolute; bottom: 0;background: #fff; padding:10px; border:1px solid #ccc; color: red">Please fill out this field </div>
+                      <div *ngIf="localForm.submitted && !password.valid" class="validate-register">
+                        Bạn không được bỏ trống
+                    </div>
+                  </div>
+
+                  <div class="recaptcha form-control1" ></div>
+                  <div class="submit">
+                    <input class="btn" type="submit" id="dangnhap" value="Đăng Nhập" >
+
+                  <br>
+                  <div class="forgetpassword" style="margin-left: 70px;">
+
+                          <a id="quenmk" routerLink="/forgotpassword">Quên mật khẩu?</a> hoặc <a routerLink="/register">Đăng kí</a>
+                    </div>
+
+
+                  </div>
+                  <br>
+                  <div>
+                    <div class="col"  >
+                      <a href="#" class="fb btn" style="background-color: #3B5998;
+                      color: white;">
+                        <i class="fa fa-facebook fa-fw"></i>Login with Facebook
+                      </a>
+                      <a href="#" class="google btn" style="background-color: #dd4b39;
+                      color: white;">
+                        <i class="fa fa-google fa-fw"></i>Login with Google+
+                      </a>
+                    </div>
+                  </div>
+
+              </form>
+          </div>
+
+      </div>
+  </section>
+</div>
+

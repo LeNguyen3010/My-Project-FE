@@ -1,0 +1,71 @@
+<div class="content"></div>
+<div class="container">
+  <form #order="ngForm" (ngSubmit)="purchase()" >
+  <div class="row">
+    <div class="col-md-4 order-md-2 mb-4" >
+      <h4 class="mb-3">Đơn hàng của bạn</h4>
+      <ul class="list-group mb-3" *ngFor="let item of cartItems">
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+          <td class="img"><a  title="Nike Air Max 90 Essential &quot;Grape&quot;"><img style="height: 100px; width: 100px; "
+                              src="/assets/images/shoes/{{item.image}}" ></a></td>
+            <h6 class="my-0">{{item.name}}</h6>
+            <small class="text-muted">{{item.price}}đ</small>
+          </div>
+          <span style="margin-top: 20px;" class="text-muted">Số lượng:{{item.quantity}}</span>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-8 order-md-1">
+      <h4 class="mb-3">Thông tin nhận hàng</h4>
+      <form class="needs-validation" novalidate>
+        <div class="mb-3">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" placeholder="Vd: you@example.com" value="{{email}}" disabled>
+        </div>
+        <div class="mb-3">
+          <label for="address">Address</label>
+          <input type="text" class="form-control" name="address" [(ngModel)]="address" placeholder="Vd: 1234 Main St" required #addressTo="ngModel">
+          <div *ngIf="order.submitted && !addressTo.valid" class="validate-register">
+           Không được bỏ trống
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="phonenumber">Số điện thoại</label>
+          <input type="text" class="form-control" name="phoneNumber" [(ngModel)]="phoneNumber" placeholder="Vd:0123456789" required
+          #phonenumber="ngModel" pattern="(84|0[3|5|7|8|9])+([0-9]{8})\b">
+          <div *ngIf="order.submitted && !phonenumber.valid" class="validate-register">
+            <div [hidden]="order.submitted && phonenumber.error?.pattern">
+              Định dạng không chính xác
+            </div>
+            <div [hidden]="order.submitted && !phonenumber.valid">
+              Không được bỏ trống
+            </div>
+         </div>
+        </div>
+        <div class="mb-3">
+          <label for="date">Date</label>
+          <input type="text" class="form-control" value="{{currentDate | date:'yyyy-MM-dd'}}" disabled>
+        </div>
+        <hr style="border: 2px solid black; margin-top: 40px;">
+        <h4 class="mb-3">Phương thức thanh toán</h4>
+          <div class="form-group  mb-9">
+            <select id="inputState" class="form-control">
+              <option>Thanh toán sau khi nhận hàng</option>
+            </select>
+          </div>
+      </form>
+
+        </div>
+        <div class="col-md-12 order-md-3 mb-6">
+          <div style="text-align: right; margin-top: 30px;">
+          <h5 class="mb-3">Tổng thanh toán: <span style="font-size: 30px;">{{amount}}đ</span></h5>
+
+          <button type="submit" class="btn btn-primary" style="width: 160px;"
+           >Đặt hàng</button>
+        </div>
+        </div>
+
+    </div>
+  </form>
+  </div>

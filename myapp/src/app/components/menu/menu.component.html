@@ -1,0 +1,178 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">
+      <img src="/assets/images/logo.png" class="logo-top" alt="">
+    </a>
+    <div class="desk-menu collapse navbar-collapse justify-content-md-center" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/">TRANG CHỦ</a>
+        </li>
+        <li class="nav-item active" >
+          <a class="nav-link" routerLink="/collection">BỘ SƯU TẬP</a>
+        </li>
+        <li class="nav-item active" *ngIf="userService.roleMatch(['ROLE_USER'])">
+          <a class="nav-link" routerLink="/order" >LỊCH SỬ MUA HÀNG</a>
+        </li>
+        <li class="nav-item active" *ngIf="userService.roleMatch(['ROLE_ADMIN'])">
+          <a class="nav-link" routerLink="/admin" >QUẢN LÍ</a>
+        </li>
+        <li class="nav-item active" *ngIf="userService.roleMatch(['ROLE_ADMIN'])">
+          <a class="nav-link" routerLink="/ordermanager" >DUYỆT ĐƠN HÀNG</a>
+        </li>
+        <li class="nav-item active"  *ngIf="!userService.roleMatch(['ROLE_ADMIN'])">
+          <a class="nav-link" routerLink="/introduce">GIỚI THIỆU</a>
+        </li>
+        <li class="nav-item active"  *ngIf="!userService.roleMatch(['ROLE_ADMIN'])">
+          <a class="nav-link" routerLink="/blog">BLOG</a>
+        </li>
+        <li class="nav-item active"  *ngIf="!userService.roleMatch(['ROLE_ADMIN'])">
+          <a class="nav-link" routerLink="/contact">LIÊN HỆ</a>
+        </li>
+      </ul>
+    </div>
+    <div id="offcanvas-flip1" uk-offcanvas="flip: true; overlay: true">
+      <div class="uk-offcanvas-bar" style="background: white;
+      width: 100%;">
+        <button class="uk-offcanvas-close" style="color:#272727" type="button" uk-close></button>
+        <h3 class="h3-menu">MENU</h3>
+        <div class="justify-content-md-center">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/" >TRANG CHỦ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/collection">BỘ SƯU TẬP</a>
+            </li>
+            <li class="nav-item" *ngIf="!userService.roleMatch(['ROLE_ADMIN'])">
+              <a class="nav-link" routerLink="/introduce">GIỚI THIỆU</a>
+            </li>
+            <li class="nav-item" *ngIf="userService.roleMatch(['ROLE_USER'])">
+              <a class="nav-link" routerLink="/order" >LỊCH SỬ MUA HÀNG</a>
+            </li>
+            <li class="nav-item" *ngIf="userService.roleMatch(['ROLE_ADMIN'])">
+              <a class="nav-link" routerLink="/admin" >QUẢN LÍ</a>
+            </li>
+            <li class="nav-item" *ngIf="userService.roleMatch(['ROLE_ADMIN'])">
+              <a class="nav-link" routerLink="/ordermanager" >DUYỆT ĐƠN HÀNG</a>
+            </li>
+            <li class="nav-item" *ngIf="!userService.roleMatch(['ROLE_ADMIN'])">
+              <a class="nav-link" routerLink="/blog">BLOG</a>
+            </li>
+            <li class="nav-item" *ngIf="!userService.roleMatch(['ROLE_ADMIN'])">
+              <a class="nav-link" routerLink="/contact">LIÊN HỆ</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div id="offcanvas-flip" uk-offcanvas="flip: true; overlay: true">
+      <div class="uk-offcanvas-bar" style="    background: white;
+      width: 350px;" >
+          <h3 style="font-size: 14px;
+          color: #272727;
+          text-transform: uppercase;
+          margin: 3px 0 30px 0;
+          font-weight: 500; letter-spacing: 2px;">Tìm kiếm</h3>
+          <div class="search-box wpo-wrapper-search">
+              <form  class="searchform searchform-categoris ultimate-search">
+                  <div class="wpo-search-inner" style="display:inline">
+                      <input type="hidden" name="type" value="product">
+                      <input required="" id="inputSearchAuto" name="q" maxlength="40" autocomplete="off"
+                             class="searchinput input-search search-input" type="text" size="20"
+                             placeholder="Tìm kiếm sản phẩm..." #keyword >
+                  </div>
+                  <button type="submit" class="btn-search btn" id="search-header-btn" (click)="SearchProducts(keyword.value)" >
+                    <i style="font-weight:bold" class="fas fa-search"></i>
+                  </button>
+              </form>
+              <div>
+
+                  <table id="cart-view">
+                      <tbody>
+                      <tr class="item_1"  *ngFor="let item of products">
+                          <td class="img uk-offcanvas-close"><a><img
+                                  src="/assets/images/shoes/{{item.image}}" (click)="getProductId(item.id)"></a></td>
+                          <td>
+                              <a class="pro-title-view uk-offcanvas-close" style="color: #272727"
+                                 (click)="getProductId(item.id)" >Tên: {{item.name}}</a>
+                                 <br>
+                              <span class="pro-price-view">Giá: {{item.price}}đ</span>
+                              <br>
+                              <span class="pro-price-view">Số lượng: {{item.quantity}}</span>
+                          </td>
+                      </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+  </div>
+    <div id="offcanvas-flip2" uk-offcanvas="flip: true; overlay: true">
+      <div class="uk-offcanvas-bar" style="background: white;
+          width: 350px;">
+        <div class="site-nav-container-last" style="color:#272727">
+          <div class="cart-view clearfix">
+            <table id="cart-view">
+              <tbody>
+                <tr class="item_1" *ngFor="let item of cartItems">
+                  <td class="img "><a   title="Nike Air Max 90 Essential &quot;Grape&quot;"><img
+                        src="/assets/images/shoes/{{item.image}}" alt="/products/nike-air-max-90-essential-grape"></a>
+                  </td>
+                  <td>
+                    <span style="font-size: 12px;">Id: {{item.id}}</span>
+                    <a class="pro-title-view " title="Nike Air Max 90 Essential &quot;Grape&quot;" >Tên: {{item.name}}</a>
+                    <span class="remove_link remove-cart"><span (click)="remove(item.id)"><i style="color: #272727;"
+                      class="fas fa-times"></i></span></span>
+                      <div class="pro-price-view">Giá: {{item.price}}đ</div>
+                    <span class="pro-quantity-view"><input (change)="save()" min=1 max="10" [(ngModel)]="item.quantity"
+                        type="number" style="width: 25px; border: #ededed; text-align: center;"></span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <span class="line"></span>
+            <table class="table-total">
+              <tbody>
+                <tr>
+                  <td class="text-left">TỔNG TIỀN:</td>
+                  <td class="text-right" id="total-view-cart">{{amount}}đ</td>
+                </tr>
+                <tr>
+                  <td class="distance-td"><a href="" class="linktocart button dark">Xem giỏ hàng</a></td>
+                  <td class="distance-td"><a href="" (click)="checkout()" class="linktocheckout button dark uk-offcanvas-close" >Thanh toán</a></td>
+                </tr>
+              </tbody>
+            </table>
+            <a href="" target="_blank" class="button btn-check" style="text-decoration:none;"><span>Click nhận mã giảm
+                giá ngay !</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="icon-ol nav-item dropdown">
+      <a style="color: #272727" nav-link dropdown-toggle id="navbardrop" data-toggle="dropdown">
+        <i class="fas fa-user-alt"></i>
+      </a>
+      <div class="dropdown-menu">
+        <th>
+        </th>
+        <th>
+          <a *ngIf="isLoggedIn()" class="dropdown-item" (click)="logout()">Đăng xuất</a>
+          <a *ngIf="!isLoggedIn()" class="dropdown-item" routerLink="/register">Đăng kí</a>
+          <a *ngIf="!isLoggedIn()" class="dropdown-item" routerLink="/login">Đăng nhập</a>
+        </th>
+      </div>
+      <a href="#" class="" uk-toggle="target: #offcanvas-flip">
+        <i class="fas fa-search" style="color: black"></i>
+    </a>
+      <a style="color: #272727"  uk-toggle="target: #offcanvas-flip2">
+        <i class="fas fa-shopping-cart"></i>
+      </a>
+      <button class="navbar-toggler" type="button" uk-toggle="target: #offcanvas-flip1" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </div>
+</nav>

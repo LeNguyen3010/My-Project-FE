@@ -1,0 +1,30 @@
+<div class="content">
+  <section class="signin ">
+      <div class="container">
+          <div class="signin-left">
+              <div class="sign-title">
+                  <h1>Xác nhận</h1>
+              </div>
+          </div>
+          <div class="signin-right " id="a-sign">
+            <form action="">
+              <div class="username form-control1 ">
+                 <h2>Nhập mã xác nhận</h2>
+              </div>
+              <div class="password form-control1">
+                  <input type="number" id="confirmnumber" placeholder="Mã xác nhận" #confirmNumber>
+              </div>
+
+              <div class="recaptcha form-control1">This site is protected by reCAPTCHA and the Google <a href="">Privacy Policy</a> and <a href="">Terms of Service</a> apply.</div>
+              <div class="submit">
+                <input class="btn" type="submit" (click)="confirm(confirmNumber.value)" value="Xác nhận" >
+                <div class="forgetpassword">
+                  <input class="btn" type="submit" routerLink="/forgotpassword" value="Chưa nhận đc mã" >
+                </div>
+              </div>
+          </form>
+          </div>
+      </div>
+  </section>
+</div>
+
